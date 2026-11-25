@@ -22,6 +22,7 @@ typedef struct {
 
 } cartridge_headers;
 
+extern bool cartridge_loaded;
 extern cartridge_headers* cart_header;
 
 bool load_cartridge_data(const char* filename);

@@ -4,7 +4,7 @@
 
 uint8_t cartridge_rom_data[MAX_CARTRIDGE_SIZE];
 bool cartridge_loaded = false;
-cartridge_headers* cart_header = (cartridge_headers*)(cartridge_rom_data + 0x100);
+cartridge_headers* cart_header = (cartridge_headers*)(cartridge_rom_data + 0x0100);
 
 void print_cart_info() {
 	printf("Entry points at each byte: %.2X %.2X %.2X %.2X \n", 
