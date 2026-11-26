@@ -19,21 +19,21 @@ void sm83_reset() {
 const sm83_instruction* sm83_fetch_cycle() {
 	uint8_t opcode = cartridge_rom_data[registers.PC];
 	const sm83_instruction* instruction_ptr = &instruction_set[opcode];
-	//increment_pc();
 	return instruction_ptr;
 }
 
-void sm83_execute_cycle(const sm83_instruction* instruction_ptr) {
+bool sm83_execute_cycle(const sm83_instruction* instruction_ptr) {
 	sm83_instruction instruction = *instruction_ptr;
 	void* instruction_address = instruction.opcode_ptr;
-	if(instruction_address == NULL) {
+	if(!instruction_address) {
 		printf("Instruction at PC address %.4X (%s) points to a null pointer. \n", 
 			registers.PC, instruction.opcode);
+		return false;
 	}
 	else {
 		((execute_sm83_instruction)instruction_address)();
+		return true;
 	}
-	//return instruction;
 }
 
 void increment_pc() {

@@ -1,8 +1,9 @@
 #include <stddef.h>
 #include "instr.h"
+#include "alu.h"
 
 const sm83_instruction instruction_set[256] = {
-	{"NOP", 1, NULL}, //0x00
+	{"NOP", 1, no_operation}, //0x00
 	{"LD BC,nn", 3, NULL}, //0x01
 	{"LD (BC),A", 1, NULL}, //0x02
 	{"INC BC", 1, NULL}, //0x03
@@ -197,7 +198,7 @@ const sm83_instruction instruction_set[256] = {
 	{"RET NZ", 1, NULL}, //0xC0
 	{"POP BC", 1, NULL}, //0xC1
 	{"JP NZ,nn", 3, NULL}, //0xC2
-	{"JP nn", 3, NULL}, //0xC3
+	{"JP nn", 3, unconditional_jump}, //0xC3
 	{"CALL NZ,nn", 3, NULL}, //0xC4
 	{"PUSH BC", 1, NULL}, //0xC5
 	{"ADD n", 2, NULL}, //0xC6
