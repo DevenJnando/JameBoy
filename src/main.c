@@ -1,6 +1,4 @@
 #include "arch/common.h"
-#include "cartridge/cartridge.h"
-#include "sm83/cpu.h"
 #include "sm83/control.h"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>

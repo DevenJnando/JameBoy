@@ -1,6 +1,6 @@
 #include "cpu.h"
 #include "registers.h"
-#include "../cartridge/cartridge.h" // eventually this will probably get replaced
+#include "data_bus.h"
 
 registers_struct registers;
 
@@ -17,7 +17,7 @@ void sm83_reset() {
 }
 
 const sm83_instruction* sm83_fetch_cycle() {
-	uint8_t opcode = cartridge_rom_data[registers.PC];
+	uint8_t opcode = data_bus_read(registers.PC);
 	const sm83_instruction* instruction_ptr = &instruction_set[opcode];
 	return instruction_ptr;
 }
@@ -34,8 +34,4 @@ bool sm83_execute_cycle(const sm83_instruction* instruction_ptr) {
 		((execute_sm83_instruction)instruction_address)();
 		return true;
 	}
-}
-
-void increment_pc() {
-	registers.PC+=1;
 }

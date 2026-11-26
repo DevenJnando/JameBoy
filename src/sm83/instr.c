@@ -1,6 +1,6 @@
 #include <stddef.h>
 #include "instr.h"
-#include "alu.h"
+#include "operations.h"
 
 const sm83_instruction instruction_set[256] = {
 	{"NOP", 1, no_operation}, //0x00
@@ -36,7 +36,7 @@ const sm83_instruction instruction_set[256] = {
 	{"LD E,n", 2, NULL}, //0x1E
 	{"RRA", 1, NULL}, //0x1F
 	{"JR NZ,e", 2, NULL}, //0x20
-	{"LD HL,nn", 3, NULL}, //0x21
+	{"LD HL,nn", 3, load_uint16_to_HL}, //0x21
 	{"LD (HL+),A", 1, NULL}, //0x22
 	{"INC HL", 1, NULL}, //0x23
 	{"INC H", 1, NULL}, //0x24
@@ -178,7 +178,7 @@ const sm83_instruction instruction_set[256] = {
 	{"XOR H", 1, NULL}, //0xAC
 	{"XOR L", 1, NULL}, //0xAD
 	{"XOR (HL)", 1, NULL}, //0xAE
-	{"XOR A", 1, NULL}, //0xAF
+	{"XOR A", 1, exclusive_or_A_to_A}, //0xAF
 	{"OR B", 1, NULL}, //0xB0
 	{"OR C", 1, NULL}, //0xB1
 	{"OR D", 1, NULL}, //0xB2
