@@ -26,8 +26,8 @@ bool sm83_execute_cycle(const sm83_instruction* instruction_ptr) {
 	sm83_instruction instruction = *instruction_ptr;
 	void* instruction_address = instruction.opcode_ptr;
 	if(!instruction_address) {
-		printf("Instruction at PC address %.4X (%s) points to a null pointer. \n", 
-			registers.PC, instruction.opcode);
+		printf("Instruction %.2X at PC address %.4X (%s) points to a null pointer. \n", 
+			instruction.opcode_address, registers.PC, instruction.opcode);
 		return false;
 	}
 	else {

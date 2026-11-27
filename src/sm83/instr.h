@@ -1,6 +1,7 @@
 #include <stdint.h>
 
 typedef struct {
+	uint8_t opcode_address;
 	char* opcode;
 	uint8_t instruction_length;
 	void* opcode_ptr;
